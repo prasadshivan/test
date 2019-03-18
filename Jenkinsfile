@@ -17,7 +17,7 @@ node
         stage ('TestRun') 
         {
             sh 'aws ecs list-services --cluster DevopsTest'
-            sh 'aws ecs list-tasks --cluster qa --service-name ecs-simple-service2'
+            sh 'aws ecs list-tasks --cluster DevopsTest --service-name ecs-simple-service2'
         }
         
         stage('TestResultpublish')
@@ -40,7 +40,7 @@ node
             emailext attachmentsPattern: 'TestResults\\*.trx',      
             body: '''${SCRIPT, template="groovy_html.template"}''', 
             subject: currentBuild.currentResult + " : " + env.JOB_NAME, 
-            to: 'prasadshivan@gmail.comp'
+            to: 'prasadshivan@gmail.com'
         }
     }
 }
